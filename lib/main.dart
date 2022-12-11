@@ -4,7 +4,7 @@ import 'package:food_delivery_test/route/route.gr.dart';
 import 'di/locator.dart';
 
 void main() {
-  locator.registerSingleton<AppRouter>(AppRouter());
+  setupLocator();
   runApp(MyApp());
 }
 
