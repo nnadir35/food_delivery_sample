@@ -19,11 +19,10 @@ class BasketView extends StatelessWidget {
       ) {
         return Scaffold(
           body: ListView.builder(
-            itemCount: context.read<MasterViewModel>().dummy.length,
+            itemCount: 1,
             itemBuilder: (BuildContext BuilderContext, int index) {
               return ListTile(
-                title: Text(
-                    context.read<MasterViewModel>().dummy[index].toString()),
+                title: Text(""),
               );
             },
           ),

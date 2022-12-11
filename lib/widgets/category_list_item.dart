@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ListItem extends StatelessWidget {
+class CategoryListItem extends StatelessWidget {
   final String image;
   final String title;
   final String description;
   final Function function;
-  const ListItem({
+  const CategoryListItem({
     Key key,
     @required this.image,
     @required this.title,

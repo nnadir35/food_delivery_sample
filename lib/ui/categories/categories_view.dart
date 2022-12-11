@@ -6,17 +6,20 @@ import 'package:food_delivery_test/constants/string_constant.dart';
 import 'package:food_delivery_test/di/locator.dart';
 import 'package:food_delivery_test/models/categories_model.dart';
 import 'package:food_delivery_test/route/route.gr.dart';
+import 'package:food_delivery_test/ui/master/master_view_model.dart';
 import 'package:food_delivery_test/widgets/loading_widget.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../widgets/list_item.dart';
+import '../../widgets/category_list_item.dart';
 import './categories_view_model.dart';
+
+import 'package:provider/provider.dart';
 
 class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CategoriesViewModel>.reactive(
-      viewModelBuilder: () => CategoriesViewModel(),
+      viewModelBuilder: () => CategoriesViewModel(context),
       onModelReady: (CategoriesViewModel model) async {
         await model.init();
       },
@@ -26,27 +29,18 @@ class CategoriesView extends StatelessWidget {
         Widget child,
       ) {
         return Scaffold(
-            // body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            //   Text(
-            //     'CategoriesView',
-            //   ),
-            //   ElevatedButton(
-            //       onPressed: () {
-            //         // AutoRouter.of(context)
-            //         //     .navigate(CategoriesRouter(children: [MealsRoute()]));
-            //         model.getCategories();
-            //       },
-            //       child: Text("bas"))
-            // ]),
             body: model.isBusy
                 ? LoadingWidget()
                 : model.categoryResponse != null
                     ? ListView.builder(
                         itemCount: model.categoryResponse.categories.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return ListItem(
+                          return CategoryListItem(
                             function: () {
-                              log("message");
+                              model.setSelectedCategoryName(model
+                                  .categoryResponse
+                                  .categories[index]
+                                  .strCategory);
                             },
                             image: model.categoryResponse.categories[index]
                                 .strCategoryThumb,

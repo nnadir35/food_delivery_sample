@@ -5,11 +5,13 @@ import 'package:food_delivery_test/constants/api_constants.dart';
 import 'package:food_delivery_test/models/categories_model.dart';
 
 import '../../manager/network_manager.dart';
+import '../../models/meals_model.dart';
 
-class MealService extends IMealService {
-  static final MealService _instance = MealService._init();
-  static MealService get instance => _instance;
-  MealService._init();
+class FoodDeliveryAppService extends IFoodDeliveryAppService {
+  static final FoodDeliveryAppService _instance =
+      FoodDeliveryAppService._init();
+  static FoodDeliveryAppService get instance => _instance;
+  FoodDeliveryAppService._init();
 
   final _apiNetwork = ApiNetworkManager.instance.dio;
 
@@ -17,9 +19,22 @@ class MealService extends IMealService {
   Future<Categories> getCategories() async {
     try {
       var response = await _apiNetwork.get(ApiConstants.categories);
-      log(response.statusMessage);
       if (response.statusCode == 200) {
         return Categories.fromJson(response.data);
+      }
+    } catch (e) {
+      rethrow;
+    }
+    return null;
+  }
+
+  @override
+  Future<Meals> getMealsByCategory(String queryParameter) async {
+    try {
+      var response = await _apiNetwork.get(ApiConstants.mealsByCategories,
+          queryParameters: {"c": queryParameter});
+      if (response.statusCode == 200) {
+        return Meals.fromJson(response.data);
       }
     } catch (e) {
       rethrow;

@@ -25,12 +25,7 @@ class MealDetailView extends StatelessWidget {
             Text(
               'MealDetailView',
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Provider.of<MasterViewModel>(context, listen: false)
-                      .addDataToDummyList();
-                },
-                child: Text("add data"))
+            ElevatedButton(onPressed: () {}, child: Text("add data"))
           ]),
         );
       },

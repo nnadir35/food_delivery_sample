@@ -5,9 +5,10 @@ import 'package:stacked/stacked.dart';
 class MasterViewModel extends BaseViewModel {
   Future<void> init() async {}
 
-  List<int> dummy = [];
-
-  addDataToDummyList() {
-    dummy.add(Random().nextInt(99));
+  String _selectedCategoryName = "";
+  get selectedCategoryName => _selectedCategoryName;
+  set setSelectedCategoryName(String s) {
+    _selectedCategoryName = s;
+    notifyListeners();
   }
 }
