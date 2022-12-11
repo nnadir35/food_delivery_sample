@@ -1,14 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_test/ui/master/master_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../constants/string_constant.dart';
-import '../../route/route.gr.dart';
+import './meals_view_model.dart';
+import '../../constants/app_constants.dart';
+import '../../widgets/favorite_toggle.dart';
 import '../../widgets/loading_widget.dart';
 import '../../widgets/meal_list_item.dart';
-import './meals_view_model.dart';
-import 'package:provider/provider.dart';
 
 class MealsView extends StatelessWidget {
   @override
@@ -30,17 +29,32 @@ class MealsView extends StatelessWidget {
                     ? ListView.builder(
                         itemCount: model.mealsResponse.meals.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return MealListItem(
-                            meal: model.mealsResponse.meals[index],
-                            function: () {
-                              model.setSelectedMealName(
-                                  model.mealsResponse.meals[index].strMeal);
-                            },
+                          return Row(
+                            children: [
+                              MealListItem(
+                                meal: model.mealsResponse.meals[index],
+                                function: () {
+                                  model.setSelectedMealName(
+                                      model.mealsResponse.meals[index].strMeal);
+                                },
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<MasterViewModel>()
+                                        .favoritedmealsToggle(model
+                                            .mealsResponse.meals[index].idMeal);
+                                  },
+                                  icon: itemFavoriteButton(context
+                                      .watch<MasterViewModel>()
+                                      .isFavorited(model
+                                          .mealsResponse.meals[index].idMeal)))
+                            ],
                           );
                         },
                       )
                     : Center(
-                        child: Text(StringConstants.responseError),
+                        child: Text(AppConstants.responseError),
                       ));
       },
     );

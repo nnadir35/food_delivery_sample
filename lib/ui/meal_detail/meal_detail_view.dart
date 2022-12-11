@@ -1,13 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_test/ui/master/master_view_model.dart';
+import 'package:food_delivery_test/widgets/favorite_toggle.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
-import 'package:provider/provider.dart';
-import '../../constants/string_constant.dart';
-import '../../route/route.gr.dart';
-import '../../widgets/loading_widget.dart';
+
 import './meal_detail_view_model.dart';
-import 'package:provider/provider.dart';
+import '../../constants/app_constants.dart';
+import '../../widgets/loading_widget.dart';
 
 class MealDetailView extends StatelessWidget {
   @override
@@ -39,16 +38,25 @@ class MealDetailView extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Text(model.specifiedmealsResponse.strMeal),
+                                  _mealName(model),
                                   _addVerticalMargin(context),
-                                  Text(StringConstants.defineCategory +
-                                      model.specifiedmealsResponse.strCategory),
+                                  _mealCategory(model),
                                   _addVerticalMargin(context),
-                                  Text(StringConstants.defineArea +
-                                      model.specifiedmealsResponse.strArea),
+                                  _mealArea(model),
                                   _addVerticalMargin(context),
-                                  Text(model
-                                      .specifiedmealsResponse.strInstructions),
+                                  IconButton(
+                                      onPressed: () {
+                                        context
+                                            .read<MasterViewModel>()
+                                            .favoritedmealsToggle(model
+                                                .specifiedmealsResponse.idMeal);
+                                      },
+                                      icon: itemFavoriteButton(context
+                                          .watch<MasterViewModel>()
+                                          .isFavorited(model
+                                              .specifiedmealsResponse.idMeal))),
+                                  _addVerticalMargin(context),
+                                  _mealInstructions(model),
                                 ],
                               ),
                             ),
@@ -56,11 +64,27 @@ class MealDetailView extends StatelessWidget {
                         ),
                       )
                     : Center(
-                        child: Text(StringConstants.responseError),
+                        child: Text(AppConstants.responseError),
                       ));
       },
     );
   }
+
+  Text _mealInstructions(MealDetailViewModel model) {
+    return Text(model.specifiedmealsResponse.strInstructions);
+  }
+
+  Text _mealArea(MealDetailViewModel model) {
+    return Text(AppConstants.defineArea + model.specifiedmealsResponse.strArea);
+  }
+
+  Text _mealCategory(MealDetailViewModel model) {
+    return Text(
+        AppConstants.defineCategory + model.specifiedmealsResponse.strCategory);
+  }
+
+  Text _mealName(MealDetailViewModel model) =>
+      Text(model.specifiedmealsResponse.strMeal);
 
   SizedBox _addVerticalMargin(BuildContext context) {
     return SizedBox(

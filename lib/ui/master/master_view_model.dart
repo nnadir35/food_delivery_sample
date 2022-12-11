@@ -1,6 +1,7 @@
-import 'dart:math';
-
+import 'package:food_delivery_test/models/meal_detail_model.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../models/meals_model.dart';
 
 class MasterViewModel extends BaseViewModel {
   Future<void> init() async {}
@@ -18,4 +19,20 @@ class MasterViewModel extends BaseViewModel {
     _selectedMealName = s;
     notifyListeners();
   }
+
+  List<String> _favoritedMealsIDs = [];
+  List<String> get getFavoritedMeals => _favoritedMealsIDs;
+  void favoritedmealsToggle(String value) {
+    !_favoritedMealsIDs.contains(value)
+        ? _favoritedMealsIDs.add(value)
+        : _favoritedMealsIDs.remove(value);
+    notifyListeners();
+  }
+
+  void removeFromFavoritedMeals(String value) {
+    _favoritedMealsIDs.remove(value);
+    notifyListeners();
+  }
+
+  bool isFavorited(String value) => getFavoritedMeals.contains(value);
 }

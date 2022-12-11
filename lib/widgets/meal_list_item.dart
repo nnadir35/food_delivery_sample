@@ -12,22 +12,18 @@ class MealListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        function();
-      },
-      leading: Image.network(
-        meal.strMealThumb,
-        height: MediaQuery.of(context).size.height * 1 / 5,
-        width: MediaQuery.of(context).size.width * 1 / 10,
+    return Expanded(
+      child: ListTile(
+        onTap: () {
+          function();
+        },
+        leading: Image.network(
+          meal.strMealThumb,
+          height: MediaQuery.of(context).size.height * 1 / 5,
+          width: MediaQuery.of(context).size.width * 1 / 10,
+        ),
+        title: Text(meal.strMeal),
       ),
-      trailing: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.star,
-            color: Colors.amber,
-          )),
-      title: Text(meal.strMeal),
     );
   }
 }

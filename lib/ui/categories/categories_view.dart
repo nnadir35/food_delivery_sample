@@ -1,19 +1,10 @@
-import 'dart:developer';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/constants/string_constant.dart';
-import 'package:food_delivery_test/di/locator.dart';
-import 'package:food_delivery_test/models/categories_model.dart';
-import 'package:food_delivery_test/route/route.gr.dart';
-import 'package:food_delivery_test/ui/master/master_view_model.dart';
+import 'package:food_delivery_test/constants/app_constants.dart';
 import 'package:food_delivery_test/widgets/loading_widget.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../widgets/category_list_item.dart';
 import './categories_view_model.dart';
-
-import 'package:provider/provider.dart';
+import '../../widgets/category_list_item.dart';
 
 class CategoriesView extends StatelessWidget {
   @override
@@ -52,7 +43,7 @@ class CategoriesView extends StatelessWidget {
                         },
                       )
                     : Center(
-                        child: Text(StringConstants.responseError),
+                        child: Text(AppConstants.responseError),
                       ));
       },
     );

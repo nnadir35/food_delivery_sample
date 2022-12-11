@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_test/constants/app_constants.dart';
 import 'package:food_delivery_test/route/route.gr.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,7 +21,7 @@ class MasterView extends StatelessWidget {
       ) {
         return SafeArea(
           child: Scaffold(
-              appBar: AppBar(title: Text("App Delivery")),
+              appBar: AppBar(title: Text(AppConstants.appBar)),
               body: AutoTabsScaffold(
                 routes: [CategoriesRouter(), FavoritesRouter(), BasketRouter()],
                 bottomNavigationBuilder: (context, tabsRouter) =>
@@ -31,11 +30,13 @@ class MasterView extends StatelessWidget {
                         onTap: tabsRouter.setActiveIndex,
                         items: [
                       BottomNavigationBarItem(
-                          label: "cat", icon: Icon(Icons.list_alt)),
+                          label: AppConstants.categoryBottomBar,
+                          icon: Icon(Icons.list_alt)),
                       BottomNavigationBarItem(
-                          label: "fav", icon: Icon(Icons.favorite)),
+                          label: AppConstants.favoritesBottomBar,
+                          icon: Icon(Icons.favorite)),
                       BottomNavigationBarItem(
-                          label: "basket",
+                          label: AppConstants.basketBottomBar,
                           icon: Icon(Icons.shopping_basket_outlined)),
                     ]),
               )),
