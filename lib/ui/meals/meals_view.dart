@@ -31,8 +31,11 @@ class MealsView extends StatelessWidget {
                         itemCount: model.mealsResponse.meals.length,
                         itemBuilder: (BuildContext context, int index) {
                           return MealListItem(
-                            url: model.mealsResponse.meals[index].strMealThumb,
-                            title: model.mealsResponse.meals[index].strMeal,
+                            meal: model.mealsResponse.meals[index],
+                            function: () {
+                              model.setSelectedMealName(
+                                  model.mealsResponse.meals[index].strMeal);
+                            },
                           );
                         },
                       )

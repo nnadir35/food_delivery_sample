@@ -11,4 +11,11 @@ class MasterViewModel extends BaseViewModel {
     _selectedCategoryName = s;
     notifyListeners();
   }
+
+  String _selectedMealName = "";
+  get selectedMealName => _selectedMealName;
+  set setSelectedMealName(String s) {
+    _selectedMealName = s;
+    notifyListeners();
+  }
 }

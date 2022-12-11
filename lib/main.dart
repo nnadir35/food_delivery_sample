@@ -8,11 +8,11 @@ void main() {
   runApp(MyApp());
 }
 
+final _appRouter = AppRouter();
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _appRouter = AppRouter();
-
     return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerDelegate: _appRouter.delegate(),

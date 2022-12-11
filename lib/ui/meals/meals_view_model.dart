@@ -36,9 +36,11 @@ class MealsViewModel extends BaseViewModel {
     return mealsResponse;
   }
 
-  setSelectedCategoryName(BuildContext context, String categoryName) {
-    Provider.of<MasterViewModel>(context, listen: false)
-        .setSelectedCategoryName = categoryName;
-    AutoRouter.of(context).navigate(CategoriesRouter(children: [MealsRoute()]));
+  setSelectedMealName(String mealName) {
+    Provider.of<MasterViewModel>(viewModelContext, listen: false)
+        .setSelectedMealName = mealName;
+
+    AutoRouter.of(viewModelContext)
+        .navigate(CategoriesRouter(children: [MealDetailRoute()]));
   }
 }
