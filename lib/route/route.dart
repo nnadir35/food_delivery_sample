@@ -44,6 +44,7 @@ import '../ui/meals/meals_view.dart';
           page: EmptyRouterPage,
           children: [
             AutoRoute(path: '', page: BasketView),
+            AutoRoute(path: 'mealdetail', page: MealDetailView)
           ],
         ),
       ],

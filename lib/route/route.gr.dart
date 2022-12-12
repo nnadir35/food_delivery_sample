@@ -138,7 +138,12 @@ class AppRouter extends _i8.RootStackRouter {
                   BasketRoute.name,
                   path: '',
                   parent: BasketRouter.name,
-                )
+                ),
+                _i8.RouteConfig(
+                  MealDetailRoute.name,
+                  path: 'mealdetail',
+                  parent: BasketRouter.name,
+                ),
               ],
             ),
           ],

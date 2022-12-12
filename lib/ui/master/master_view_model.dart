@@ -27,6 +27,13 @@ class MasterViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  SpecifiedMeal _selectedBasketItem;
+  get selectedBasketItemName => _selectedBasketItem;
+  set setSelectedBasketItemName(SpecifiedMeal s) {
+    _selectedBasketItem = s;
+    notifyListeners();
+  }
+
   String _selectedMealName = "";
   get selectedMealName => _selectedMealName;
   set setSelectedMealName(String s) {
@@ -35,9 +42,35 @@ class MasterViewModel extends BaseViewModel {
   }
 
   List<String> _favoritedMealsIDs = [];
-  List<SpecifiedMeal> _favoritedMeals = [];
+  List<String> _basketItemIDs = [];
+  List<String> get basketItemIDs => _basketItemIDs;
   List<String> get getFavoritedMealIDs => _favoritedMealsIDs;
+  List<SpecifiedMeal> _favoritedMeals = [];
   List<SpecifiedMeal> get getFavoritedMeals => _favoritedMeals;
+  List<SpecifiedMeal> _basketItems = [];
+  List<SpecifiedMeal> get getBasketItems => _basketItems;
+
+  addBasketToggle(SpecifiedMeal value) async {
+    List<String> specifiedJsonList = [];
+    if (_basketItemIDs.contains(value.idMeal)) {
+      _basketItemIDs.remove(value.idMeal);
+      removeFromBasket(value);
+      _basketItems.forEach((element) {
+        specifiedJsonList.add(jsonEncode(element));
+      });
+      await LocalStorageManager.instance
+          .insertData(PreferencesKeys.basket, specifiedJsonList);
+    } else {
+      addBasketItemIDList(value.idMeal);
+      addBasket(value);
+      _basketItemIDs.forEach((element) {
+        specifiedJsonList.add(jsonEncode(element));
+      });
+      await LocalStorageManager.instance
+          .insertData(PreferencesKeys.basket, specifiedJsonList);
+    }
+    notifyListeners();
+  }
 
   Future<void> favoritedmealsToggle(SpecifiedMeal value) async {
     List<String> specifiedJsonList = [];
@@ -72,8 +105,23 @@ class MasterViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  removeFromBasket(SpecifiedMeal value) {
+    SpecifiedMeal toBeDeleted;
+    _basketItems.forEach((item) {
+      if (item.idMeal == value.idMeal) {
+        toBeDeleted = item;
+      }
+    });
+    _basketItems.remove(toBeDeleted);
+    notifyListeners();
+  }
+
   addFavoritesMealList(SpecifiedMeal value) => _favoritedMeals.add(value);
   addFavoritesMealListID(String value) => _favoritedMealsIDs.add(value);
 
+  addBasket(SpecifiedMeal value) => _basketItems.add(value);
+  addBasketItemIDList(String value) => _basketItemIDs.add(value);
+
   bool isFavorited(String value) => getFavoritedMealIDs.contains(value);
+  bool isInBasket(String value) => basketItemIDs.contains(value);
 }

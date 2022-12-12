@@ -29,6 +29,7 @@ class SpecifiedMeal {
   String strInstructions;
   String strMealThumb;
   String strTags;
+  String comment;
 
   SpecifiedMeal(
       {this.idMeal,
@@ -37,10 +38,12 @@ class SpecifiedMeal {
       this.strArea,
       this.strInstructions,
       this.strMealThumb,
-      this.strTags});
+      this.strTags,
+      this.comment});
 
   SpecifiedMeal.fromJson(Map<String, dynamic> json) {
     idMeal = json['idMeal'];
+    comment = json['comment'];
     strMeal = json['strMeal'];
     strCategory = json['strCategory'];
     strArea = json['strArea'];
@@ -51,6 +54,7 @@ class SpecifiedMeal {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['comment'] = this.comment;
     data['idMeal'] = this.idMeal;
     data['strMeal'] = this.strMeal;
     data['strCategory'] = this.strCategory;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_test/ui/master/master_view_model.dart';
+import 'package:food_delivery_test/widgets/basket_toggle.dart';
 import 'package:food_delivery_test/widgets/favorite_toggle.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
@@ -38,24 +39,56 @@ class MealDetailView extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  _mealName(model),
-                                  _addVerticalMargin(context),
-                                  _mealCategory(model),
-                                  _addVerticalMargin(context),
-                                  _mealArea(model),
-                                  _addVerticalMargin(context),
-                                  IconButton(
-                                      onPressed: () {
-                                        context
-                                            .read<MasterViewModel>()
-                                            .favoritedmealsToggle(
-                                                model.specifiedmealsResponse);
-                                      },
-                                      icon: itemFavoriteButton(context
-                                          .watch<MasterViewModel>()
-                                          .isFavorited(model
-                                              .specifiedmealsResponse.idMeal))),
-                                  _addVerticalMargin(context),
+                                  Text(model.specifiedmealsResponse.strMeal),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
+                                  Text(AppConstants.defineCategory +
+                                      model.specifiedmealsResponse.strCategory),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
+                                  Text(AppConstants.defineArea +
+                                      model.specifiedmealsResponse.strArea),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            context
+                                                .read<MasterViewModel>()
+                                                .addBasketToggle(model
+                                                    .specifiedmealsResponse);
+                                          },
+                                          icon: itemBasketButton(context
+                                              .watch<MasterViewModel>()
+                                              .isInBasket(model
+                                                  .specifiedmealsResponse
+                                                  .idMeal))),
+                                      IconButton(
+                                          onPressed: () {
+                                            context
+                                                .read<MasterViewModel>()
+                                                .favoritedmealsToggle(model
+                                                    .specifiedmealsResponse);
+                                          },
+                                          icon: itemFavoriteButton(context
+                                              .watch<MasterViewModel>()
+                                              .isFavorited(model
+                                                  .specifiedmealsResponse
+                                                  .idMeal))),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
                                   _mealInstructions(model),
                                 ],
                               ),
@@ -72,23 +105,5 @@ class MealDetailView extends StatelessWidget {
 
   Text _mealInstructions(MealDetailViewModel model) {
     return Text(model.specifiedmealsResponse.strInstructions);
-  }
-
-  Text _mealArea(MealDetailViewModel model) {
-    return Text(AppConstants.defineArea + model.specifiedmealsResponse.strArea);
-  }
-
-  Text _mealCategory(MealDetailViewModel model) {
-    return Text(
-        AppConstants.defineCategory + model.specifiedmealsResponse.strCategory);
-  }
-
-  Text _mealName(MealDetailViewModel model) =>
-      Text(model.specifiedmealsResponse.strMeal);
-
-  SizedBox _addVerticalMargin(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.01,
-    );
   }
 }
