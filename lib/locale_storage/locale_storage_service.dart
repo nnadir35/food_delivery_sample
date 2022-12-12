@@ -1,7 +1,7 @@
 import '../enum/preference_keys.dart';
 
 abstract class ILocaleStorageService {
-  getData();
-  insertData(List<String> value);
-  clear();
+  getData(PreferencesKeys preferenceKey);
+  insertData(PreferencesKeys preferenceKey, List<String> value);
+  clear(PreferencesKeys preferenceKey);
 }

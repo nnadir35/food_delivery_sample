@@ -48,8 +48,8 @@ class MealDetailView extends StatelessWidget {
                                       onPressed: () {
                                         context
                                             .read<MasterViewModel>()
-                                            .favoritedmealsToggle(model
-                                                .specifiedmealsResponse.idMeal);
+                                            .favoritedmealsToggle(
+                                                model.specifiedmealsResponse);
                                       },
                                       icon: itemFavoriteButton(context
                                           .watch<MasterViewModel>()

@@ -18,16 +18,18 @@ class LocalStorageManager extends ILocaleStorageService {
       _preferences = await SharedPreferences.getInstance();
 
   @override
-  insertData(List<String> value) async {
-    await _preferences.setStringList(_preferenceKey.toString(), value);
+  insertData(PreferencesKeys preferenceKey, List<String> value) async {
+    await _preferences.setStringList(preferenceKey.toString(), value);
   }
 
-  Future<bool> clear() async {
-    return _preferences.remove(_preferenceKey.toString());
+  Future<bool> clear(PreferencesKeys preferenceKey) async {
+    _preferences = await SharedPreferences.getInstance();
+    return await _preferences.remove(preferenceKey.toString()) ?? false;
   }
 
   @override
-  getData() {
-    return _preferences.getStringList(_preferenceKey.toString());
+  Future<List<String>> getData(PreferencesKeys preferenceKey) async {
+    _preferences = await SharedPreferences.getInstance();
+    return _preferences.getStringList(preferenceKey.toString()) ?? [];
   }
 }

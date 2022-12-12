@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_test/models/meal_detail_model.dart';
 import 'package:food_delivery_test/models/meals_model.dart';
 
 class MealListItem extends StatelessWidget {
-  final Meal meal;
+  final SpecifiedMeal meal;
   final function;
   const MealListItem({
     Key key,

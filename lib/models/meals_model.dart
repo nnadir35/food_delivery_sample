@@ -1,13 +1,15 @@
+import 'package:food_delivery_test/models/meal_detail_model.dart';
+
 class Meals {
-  List<Meal> meals;
+  List<SpecifiedMeal> meals;
 
   Meals({this.meals});
 
   Meals.fromJson(Map<String, dynamic> json) {
     if (json['meals'] != null) {
-      meals = <Meal>[];
+      meals = <SpecifiedMeal>[];
       json['meals'].forEach((v) {
-        meals.add(new Meal.fromJson(v));
+        meals.add(new SpecifiedMeal.fromJson(v));
       });
     }
   }
@@ -17,28 +19,6 @@ class Meals {
     if (this.meals != null) {
       data['meals'] = this.meals.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Meal {
-  String strMeal;
-  String strMealThumb;
-  String idMeal;
-
-  Meal({this.strMeal, this.strMealThumb, this.idMeal});
-
-  Meal.fromJson(Map<String, dynamic> json) {
-    strMeal = json['strMeal'];
-    strMealThumb = json['strMealThumb'];
-    idMeal = json['idMeal'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['strMeal'] = this.strMeal;
-    data['strMealThumb'] = this.strMealThumb;
-    data['idMeal'] = this.idMeal;
     return data;
   }
 }
