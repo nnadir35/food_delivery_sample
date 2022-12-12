@@ -13,10 +13,17 @@ class MasterViewModel extends BaseViewModel {
     LocalStorageManager.instance.initSharedPref();
     var favoritesList =
         await LocalStorageManager.instance.getData(PreferencesKeys.favorites);
+    var basketList =
+        await LocalStorageManager.instance.getData(PreferencesKeys.basket);
     favoritesList.forEach((element) {
       SpecifiedMeal meal = SpecifiedMeal.fromJson(jsonDecode(element));
       addFavoritesMealListID(meal.idMeal);
       addFavoritesMealList(meal);
+    });
+    basketList.forEach((element) {
+      SpecifiedMeal meal = SpecifiedMeal.fromJson(jsonDecode(element));
+      addBasketItemIDList(meal.idMeal);
+      addBasket(meal);
     });
   }
 
@@ -28,8 +35,8 @@ class MasterViewModel extends BaseViewModel {
   }
 
   SpecifiedMeal _selectedBasketItem;
-  get selectedBasketItemName => _selectedBasketItem;
-  set setSelectedBasketItemName(SpecifiedMeal s) {
+  SpecifiedMeal get selectedBasketItem => _selectedBasketItem;
+  set setSelectedBasketItem(SpecifiedMeal s) {
     _selectedBasketItem = s;
     notifyListeners();
   }
@@ -63,7 +70,7 @@ class MasterViewModel extends BaseViewModel {
     } else {
       addBasketItemIDList(value.idMeal);
       addBasket(value);
-      _basketItemIDs.forEach((element) {
+      _basketItems.forEach((element) {
         specifiedJsonList.add(jsonEncode(element));
       });
       await LocalStorageManager.instance

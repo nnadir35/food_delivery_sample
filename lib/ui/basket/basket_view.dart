@@ -31,8 +31,7 @@ class BasketView extends StatelessWidget {
                 function: () {
                   model.setBasketItem(basketItems[index]);
                 },
-                image: basketItems[index].strMealThumb,
-                title: basketItems[index].strMeal,
+                meal: basketItems[index],
               );
             },
           ),

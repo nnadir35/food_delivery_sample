@@ -35,7 +35,6 @@ class MealDetailViewModel extends BaseViewModel {
       specifiedmealsResponse = response.meals.first;
       notifyListeners();
     } catch (e) {
-      log(e.toString());
       rethrow;
     }
     return response;

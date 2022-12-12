@@ -15,9 +15,6 @@ class FavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<SpecifiedMeal> list =
         context.watch<MasterViewModel>().getFavoritedMeals;
-    log(list.length.toString());
-    log(context.watch<MasterViewModel>().getFavoritedMeals.length.toString());
-    log(context.watch<MasterViewModel>().getFavoritedMealIDs.length.toString());
     return ViewModelBuilder<FavoritesViewModel>.reactive(
       viewModelBuilder: () => FavoritesViewModel(context),
       onModelReady: (FavoritesViewModel model) async {

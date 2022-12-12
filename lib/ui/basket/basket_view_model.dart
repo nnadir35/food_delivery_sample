@@ -16,8 +16,8 @@ class BasketViewModel extends BaseViewModel {
 
   setBasketItem(SpecifiedMeal meal) {
     Provider.of<MasterViewModel>(viewModelContext, listen: false)
-        .setSelectedBasketItemName = meal;
+        .setSelectedBasketItem = meal;
     AutoRouter.of(viewModelContext)
-        .navigate(BasketRouter(children: [MealDetailRoute()]));
+        .navigate(BasketRouter(children: [BasketDetailRoute()]));
   }
 }
