@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery_test/models/meal_detail_model.dart';
 import 'package:food_delivery_test/ui/master/master_view_model.dart';
@@ -13,6 +15,9 @@ class FavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<SpecifiedMeal> list =
         context.watch<MasterViewModel>().getFavoritedMeals;
+    log(list.length.toString());
+    log(context.watch<MasterViewModel>().getFavoritedMeals.length.toString());
+    log(context.watch<MasterViewModel>().getFavoritedMealIDs.length.toString());
     return ViewModelBuilder<FavoritesViewModel>.reactive(
       viewModelBuilder: () => FavoritesViewModel(context),
       onModelReady: (FavoritesViewModel model) async {
@@ -31,7 +36,9 @@ class FavoritesView extends StatelessWidget {
                 children: [
                   MealListItem(
                     meal: list[index],
-                    function: () {},
+                    function: () {
+                      model.setSelectedMealName(list[index].strMeal);
+                    },
                   ),
                   IconButton(
                       onPressed: () {

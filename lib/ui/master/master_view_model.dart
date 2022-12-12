@@ -43,7 +43,7 @@ class MasterViewModel extends BaseViewModel {
     List<String> specifiedJsonList = [];
     if (_favoritedMealsIDs.contains(value.idMeal)) {
       _favoritedMealsIDs.remove(value.idMeal);
-      _favoritedMeals.remove(value);
+      removeFromFavoritedMealList(value);
       _favoritedMeals.forEach((element) {
         specifiedJsonList.add(jsonEncode(element));
       });
@@ -58,6 +58,17 @@ class MasterViewModel extends BaseViewModel {
       await LocalStorageManager.instance
           .insertData(PreferencesKeys.favorites, specifiedJsonList);
     }
+    notifyListeners();
+  }
+
+  removeFromFavoritedMealList(SpecifiedMeal value) {
+    SpecifiedMeal toBeDeleted;
+    _favoritedMeals.forEach((item) {
+      if (item.idMeal == value.idMeal) {
+        toBeDeleted = item;
+      }
+    });
+    _favoritedMeals.remove(toBeDeleted);
     notifyListeners();
   }
 

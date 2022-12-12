@@ -121,7 +121,12 @@ class AppRouter extends _i8.RootStackRouter {
                   FavoritesRoute.name,
                   path: '',
                   parent: FavoritesRouter.name,
-                )
+                ),
+                _i8.RouteConfig(
+                  MealDetailRoute.name,
+                  path: 'mealdetail',
+                  parent: FavoritesRouter.name,
+                ),
               ],
             ),
             _i8.RouteConfig(
