@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 import './meal_detail_view_model.dart';
+import '../../api/viewmodel/base_categories_view_model.dart';
 import '../../constants/app_constants.dart';
 import '../../widgets/loading_widget.dart';
 
@@ -74,12 +75,12 @@ class MealDetailView extends StatelessWidget {
                                       IconButton(
                                           onPressed: () {
                                             context
-                                                .read<MasterViewModel>()
+                                                .read<BaseCategoriesViewModel>()
                                                 .favoritedmealsToggle(model
                                                     .specifiedmealsResponse);
                                           },
                                           icon: itemFavoriteButton(context
-                                              .watch<MasterViewModel>()
+                                              .watch<BaseCategoriesViewModel>()
                                               .isFavorited(model
                                                   .specifiedmealsResponse
                                                   .idMeal))),

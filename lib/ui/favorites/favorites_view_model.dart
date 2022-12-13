@@ -1,11 +1,7 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:food_delivery_test/enum/preference_keys.dart';
-import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
-import 'package:food_delivery_test/manager/locale_storage_manager.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../route/route.gr.dart';
 import '../master/master_view_model.dart';

@@ -1,14 +1,13 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
+
 import '../../api/concrete/meal_service_imp.dart';
+import '../../api/viewmodel/base_categories_view_model.dart';
 import '../../models/meals_model.dart';
 import '../../route/route.gr.dart';
 import '../master/master_view_model.dart';
-import 'package:provider/provider.dart';
 
 class MealsViewModel extends BaseViewModel {
   Meals mealsResponse;
@@ -28,7 +27,9 @@ class MealsViewModel extends BaseViewModel {
   Future<Meals> getMeals() async {
     try {
       mealsResponse = await FoodDeliveryAppService.instance.getMealsByCategory(
-          viewModelContext.read<MasterViewModel>().selectedCategoryName);
+          viewModelContext
+              .read<BaseCategoriesViewModel>()
+              .selectedCategoryName);
       notifyListeners();
     } catch (e) {
       rethrow;

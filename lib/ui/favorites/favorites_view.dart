@@ -1,20 +1,18 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:food_delivery_test/constants/app_constants.dart';
 import 'package:food_delivery_test/models/meal_detail_model.dart';
-import 'package:food_delivery_test/ui/master/master_view_model.dart';
-import 'package:food_delivery_test/widgets/category_list_item.dart';
-import 'package:food_delivery_test/widgets/favorite_toggle.dart';
 import 'package:food_delivery_test/widgets/meal_list_item.dart';
-import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
+
 import './favorites_view_model.dart';
+import '../../api/viewmodel/base_categories_view_model.dart';
 
 class FavoritesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<SpecifiedMeal> list =
-        context.watch<MasterViewModel>().getFavoritedMeals;
+        context.watch<BaseCategoriesViewModel>().getFavoritedMeals;
     return ViewModelBuilder<FavoritesViewModel>.reactive(
       viewModelBuilder: () => FavoritesViewModel(context),
       onModelReady: (FavoritesViewModel model) async {
@@ -26,30 +24,24 @@ class FavoritesView extends StatelessWidget {
         Widget child,
       ) {
         return Scaffold(
-          body: ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Row(
-                children: [
-                  MealListItem(
-                    meal: list[index],
-                    function: () {
-                      model.setSelectedMealName(list[index].strMeal);
-                    },
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        context
-                            .read<MasterViewModel>()
-                            .favoritedmealsToggle(list[index]);
+          body: list.isEmpty
+              ? Center(
+                  child: Text(AppConstants.emptyList),
+                )
+              : ListView.builder(
+                  itemCount: list.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return MealListItem(
+                      meal: list[index],
+                      function: () {
+                        model.setSelectedMealName(list[index].strMeal);
                       },
-                      icon: itemFavoriteButton(context
-                          .watch<MasterViewModel>()
-                          .isFavorited(list[index].idMeal)))
-                ],
-              );
-            },
-          ),
+                      buttonOnPress: () => context
+                          .read<BaseCategoriesViewModel>()
+                          .favoritedmealsToggle(list[index]),
+                    );
+                  },
+                ),
         );
       },
     );

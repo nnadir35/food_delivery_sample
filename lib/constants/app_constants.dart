@@ -7,4 +7,5 @@ class AppConstants {
   static String categoryBottomBar = "Categories";
   static String favoritesBottomBar = "Favorites";
   static String basketBottomBar = "Basket";
+  static String emptyList = "List is Empty";
 }
