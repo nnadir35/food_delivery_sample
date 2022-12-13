@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:food_delivery_test/api/concrete/meal_service_imp.dart';
-import 'package:food_delivery_test/api/viewmodel/base_categories_view_model.dart';
-import 'package:food_delivery_test/models/categories_model.dart';
-import 'package:food_delivery_test/route/route.gr.dart';
+import '../../api/concrete/meal_service_imp.dart';
+import '../../api/viewmodel/base_categories_view_model.dart';
+import '../../models/categories_model.dart';
+import '../../route/route.gr.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 

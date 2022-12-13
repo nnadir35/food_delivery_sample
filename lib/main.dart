@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/route/route.gr.dart';
+import 'route/route.gr.dart';
 
 import 'di/locator.dart';
 

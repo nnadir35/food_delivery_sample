@@ -1,12 +1,9 @@
-import 'dart:developer';
-
-import 'package:food_delivery_test/api/abstract/meal_service.dart';
-import 'package:food_delivery_test/constants/api_constants.dart';
-import 'package:food_delivery_test/models/categories_model.dart';
-import 'package:food_delivery_test/models/meal_detail_model.dart';
-
+import '../../constants/api_constants.dart';
 import '../../manager/network_manager.dart';
+import '../../models/categories_model.dart';
+import '../../models/meal_detail_model.dart';
 import '../../models/meals_model.dart';
+import '../abstract/meal_service.dart';
 
 class FoodDeliveryAppService extends IFoodDeliveryAppService {
   static final FoodDeliveryAppService _instance =

@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:food_delivery_test/models/meal_detail_model.dart';
+import '../../models/meal_detail_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
 

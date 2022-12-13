@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/models/meal_detail_model.dart';
-import 'package:food_delivery_test/ui/meals/meals_view_model.dart';
+import '../../models/meal_detail_model.dart';
+import '../meals/meals_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 

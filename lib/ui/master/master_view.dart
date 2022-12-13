@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/api/viewmodel/base_categories_view_model.dart';
-import 'package:food_delivery_test/constants/app_constants.dart';
-import 'package:food_delivery_test/route/route.gr.dart';
+import '../../api/viewmodel/base_categories_view_model.dart';
+import '../../constants/app_constants.dart';
+import '../../route/route.gr.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
-import './master_view_model.dart';
+import 'master_view_model.dart';
 import '../../api/viewmodel/base_basket_view_model.dart';
 
 class MasterView extends StatelessWidget {

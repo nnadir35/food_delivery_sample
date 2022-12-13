@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/ui/master/master_view_model.dart';
-import 'package:food_delivery_test/widgets/basket_toggle.dart';
-import 'package:food_delivery_test/widgets/favorite_toggle.dart';
+import '../../api/viewmodel/base_basket_view_model.dart';
+import '../../models/meal_detail_model.dart';
+import '../master/master_view_model.dart';
+import '../../widgets/add_to_favorite_icon_button.dart';
+import '../../widgets/basket_toggle.dart';
+import '../../widgets/favorite_toggle.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
-import './meal_detail_view_model.dart';
+import '../../widgets/add_to_basket_icon_button.dart';
+import 'meal_detail_view_model.dart';
 import '../../api/viewmodel/base_categories_view_model.dart';
 import '../../constants/app_constants.dart';
 import '../../widgets/loading_widget.dart';
@@ -60,30 +64,15 @@ class MealDetailView extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      IconButton(
-                                          onPressed: () {
-                                            context
-                                                .read<MasterViewModel>()
-                                                .addBasketToggle(model
-                                                    .specifiedmealsResponse);
-                                          },
-                                          icon: itemBasketButton(context
-                                              .watch<MasterViewModel>()
-                                              .isInBasket(model
-                                                  .specifiedmealsResponse
-                                                  .idMeal))),
-                                      IconButton(
-                                          onPressed: () {
-                                            context
-                                                .read<BaseCategoriesViewModel>()
-                                                .favoritedmealsToggle(model
-                                                    .specifiedmealsResponse);
-                                          },
-                                          icon: itemFavoriteButton(context
-                                              .watch<BaseCategoriesViewModel>()
-                                              .isFavorited(model
-                                                  .specifiedmealsResponse
-                                                  .idMeal))),
+                                      AddToBasketIconButton(
+                                          meal: model.specifiedmealsResponse),
+                                      AddToFavoriteIconButton(
+                                          function: () => context
+                                              .read<BaseCategoriesViewModel>()
+                                              .favoritedmealsToggle(
+                                                  model.specifiedmealsResponse),
+                                          value: model
+                                              .specifiedmealsResponse.idMeal),
                                     ],
                                   ),
                                   SizedBox(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/models/meal_detail_model.dart';
+import '../models/meal_detail_model.dart';
 
 class BasketListItem extends StatelessWidget {
   final SpecifiedMeal meal;

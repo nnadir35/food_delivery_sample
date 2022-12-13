@@ -1,4 +1,4 @@
-import 'package:food_delivery_test/locale_storage/locale_storage_service.dart';
+import '../locale_storage/locale_storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../enum/preference_keys.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
-import './meals_view_model.dart';
+import 'meals_view_model.dart';
 import '../../api/viewmodel/base_categories_view_model.dart';
 import '../../constants/app_constants.dart';
 import '../../widgets/loading_widget.dart';
@@ -28,7 +28,7 @@ class MealsView extends StatelessWidget {
                     ? ListView.builder(
                         itemCount: model.mealsResponse.meals.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return MealListItem(
+                          return FavoritedMealListItem(
                             meal: model.mealsResponse.meals[index],
                             function: () {
                               model.setSelectedMealName(

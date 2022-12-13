@@ -1,4 +1,4 @@
-import 'package:food_delivery_test/models/meal_detail_model.dart';
+import 'meal_detail_model.dart';
 
 class Meals {
   List<SpecifiedMeal> meals;

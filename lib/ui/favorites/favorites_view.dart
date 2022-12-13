@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/constants/app_constants.dart';
-import 'package:food_delivery_test/models/meal_detail_model.dart';
-import 'package:food_delivery_test/widgets/meal_list_item.dart';
+import '../../constants/app_constants.dart';
+import '../../models/meal_detail_model.dart';
+import '../../widgets/meal_list_item.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
-import './favorites_view_model.dart';
+import 'favorites_view_model.dart';
 import '../../api/viewmodel/base_categories_view_model.dart';
 
 class FavoritesView extends StatelessWidget {
@@ -31,7 +31,7 @@ class FavoritesView extends StatelessWidget {
               : ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return MealListItem(
+                    return FavoritedMealListItem(
                       meal: list[index],
                       function: () {
                         model.setSelectedMealName(list[index].strMeal);

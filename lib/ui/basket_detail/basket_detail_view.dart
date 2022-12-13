@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/ui/master/master_view_model.dart';
+import '../master/master_view_model.dart';
+import '../../widgets/add_to_basket_icon_button.dart';
 import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
+import '../../api/viewmodel/base_basket_view_model.dart';
 import '../../constants/app_constants.dart';
 import '../../models/meal_detail_model.dart';
 import '../../widgets/basket_toggle.dart';
-import './basket_detail_view_model.dart';
+import 'basket_detail_view_model.dart';
 
 class BasketDetailView extends StatelessWidget {
   @override
@@ -50,15 +52,7 @@ class BasketDetailView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(
-                              onPressed: () {
-                                context
-                                    .read<MasterViewModel>()
-                                    .addBasketToggle(model.getBasketItems);
-                              },
-                              icon: itemBasketButton(context
-                                  .watch<MasterViewModel>()
-                                  .isInBasket(model.getBasketItems.idMeal))),
+                          AddToBasketIconButton(meal: model.getBasketItems)
                         ],
                       ),
                       SizedBox(

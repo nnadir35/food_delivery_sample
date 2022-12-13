@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
-import 'package:food_delivery_test/ui/basket/basket_view.dart';
-import 'package:food_delivery_test/ui/basket_detail/basket_detail_view.dart';
-import 'package:food_delivery_test/ui/categories/categories_view.dart';
-import 'package:food_delivery_test/ui/favorites/favorites_view.dart';
-import 'package:food_delivery_test/ui/master/master_view.dart';
+import '../ui/basket/basket_view.dart';
+import '../ui/basket_detail/basket_detail_view.dart';
+import '../ui/categories/categories_view.dart';
+import '../ui/favorites/favorites_view.dart';
+import '../ui/master/master_view.dart';
 
 import '../ui/meal_detail/meal_detail_view.dart';
 import '../ui/meals/meals_view.dart';

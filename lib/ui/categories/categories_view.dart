@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/constants/app_constants.dart';
-import 'package:food_delivery_test/widgets/loading_widget.dart';
+import '../../constants/app_constants.dart';
+import '../../widgets/loading_widget.dart';
 import 'package:stacked/stacked.dart';
 
-import './categories_view_model.dart';
+import 'categories_view_model.dart';
 import '../../widgets/category_list_item.dart';
 
 class CategoriesView extends StatelessWidget {

@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery_test/models/meal_detail_model.dart';
+import '../../models/meal_detail_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:provider/provider.dart';
 
+import '../../api/viewmodel/base_basket_view_model.dart';
 import '../master/master_view_model.dart';
 
 class BasketDetailViewModel extends BaseViewModel {
@@ -22,7 +23,10 @@ class BasketDetailViewModel extends BaseViewModel {
           .selectedBasketItem;
 
   setItemComment() {
-    viewModelContext.read<MasterViewModel>().getBasketItems.forEach((element) {
+    viewModelContext
+        .read<BaseBasketViewModel>()
+        .getBasketItems
+        .forEach((element) {
       if (element.idMeal == getBasketItems.idMeal) {
         element.comment = commentController.text;
       }
