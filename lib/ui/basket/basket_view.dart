@@ -16,6 +16,8 @@ import 'basket_view_model.dart';
 class BasketView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<SpecifiedMeal> basketItems =
+        context.watch<BaseBasketViewModel>().getBasketItems;
     return ViewModelBuilder<BasketViewModel>.reactive(
       viewModelBuilder: () => BasketViewModel(context),
       onModelReady: (BasketViewModel model) async {
@@ -27,16 +29,16 @@ class BasketView extends StatelessWidget {
         Widget child,
       ) {
         return Scaffold(
-          body: model.basketItems.isEmpty
+          body: basketItems.isEmpty
               ? EmptyList()
               : ListView.builder(
-                  itemCount: model.basketItems.length,
+                  itemCount: basketItems.length,
                   itemBuilder: (BuildContext buildContext, int index) {
                     return BasketListItem(
                       function: () {
-                        model.setBasketItem(model.basketItems[index]);
+                        model.setBasketItem(basketItems[index]);
                       },
-                      meal: model.basketItems[index],
+                      meal: basketItems[index],
                     );
                   },
                 ),
