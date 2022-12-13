@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import '../master/master_view_model.dart';
-import '../../widgets/add_to_basket_icon_button.dart';
 import 'package:stacked/stacked.dart';
-import 'package:provider/provider.dart';
-import '../../api/viewmodel/base_basket_view_model.dart';
+
 import '../../constants/app_constants.dart';
-import '../../models/meal_detail_model.dart';
-import '../../widgets/basket_toggle.dart';
+import '../../widgets/add_to_basket_icon_button.dart';
 import 'basket_detail_view_model.dart';
 
 class BasketDetailView extends StatelessWidget {
@@ -26,7 +22,7 @@ class BasketDetailView extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Image.network(model.getBasketItems.strMealThumb),
+                Image.network(model.getBasketItem.strMealThumb),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
@@ -35,24 +31,24 @@ class BasketDetailView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(model.getBasketItems.strMeal),
+                      Text(model.getBasketItem.strMeal),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Text(AppConstants.defineCategory +
-                          model.getBasketItems.strCategory),
+                          model.getBasketItem.strCategory),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Text(AppConstants.defineArea +
-                          model.getBasketItems.strArea),
+                          model.getBasketItem.strArea),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          AddToBasketIconButton(meal: model.getBasketItems)
+                          AddToBasketIconButton(meal: model.getBasketItem)
                         ],
                       ),
                       SizedBox(

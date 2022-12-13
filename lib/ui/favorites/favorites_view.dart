@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_test/widgets/empty_list.dart';
 import '../../constants/app_constants.dart';
 import '../../models/meal_detail_model.dart';
 import '../../widgets/meal_list_item.dart';
@@ -25,9 +26,7 @@ class FavoritesView extends StatelessWidget {
       ) {
         return Scaffold(
           body: list.isEmpty
-              ? Center(
-                  child: Text(AppConstants.emptyList),
-                )
+              ? EmptyList()
               : ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {

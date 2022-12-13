@@ -19,5 +19,6 @@ class BasketViewModel extends BaseViewModel {
         .setSelectedBasketItem = meal;
     AutoRouter.of(viewModelContext)
         .navigate(BasketRouter(children: [BasketDetailRoute()]));
+    notifyListeners();
   }
 }

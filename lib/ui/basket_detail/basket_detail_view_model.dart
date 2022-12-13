@@ -15,22 +15,17 @@ class BasketDetailViewModel extends BaseViewModel {
     viewModelContext = context;
   }
   Future<void> init() async {
-    commentController.text = getBasketItems.comment;
+    commentController.text = getBasketItem.comment;
   }
 
-  SpecifiedMeal get getBasketItems =>
+  SpecifiedMeal get getBasketItem =>
       Provider.of<MasterViewModel>(viewModelContext, listen: false)
           .selectedBasketItem;
 
-  setItemComment() {
-    viewModelContext
+  setItemComment() async {
+    await viewModelContext
         .read<BaseBasketViewModel>()
-        .getBasketItems
-        .forEach((element) {
-      if (element.idMeal == getBasketItems.idMeal) {
-        element.comment = commentController.text;
-      }
-    });
+        .insertCommentToItem(getBasketItem, commentController.text);
     notifyListeners();
   }
 }

@@ -18,6 +18,7 @@ class BaseBasketViewModel extends BaseViewModel {
       SpecifiedMeal meal = SpecifiedMeal.fromJson(jsonDecode(element));
       addBasket(meal);
     });
+    notifyListeners();
   }
 
   List<SpecifiedMeal> _basketItems = [];
@@ -37,13 +38,18 @@ class BaseBasketViewModel extends BaseViewModel {
           .insertData(PreferencesKeys.basket, specifiedJsonList);
     } else {
       addBasket(value);
-      _basketItems.forEach((element) {
-        specifiedJsonList.add(jsonEncode(element));
-      });
-      await LocalStorageManager.instance
-          .insertData(PreferencesKeys.basket, specifiedJsonList);
+      await addLocalStorage();
     }
     notifyListeners();
+  }
+
+  addLocalStorage() async {
+    List<String> specifiedJsonList = [];
+    _basketItems.forEach((element) {
+      specifiedJsonList.add(jsonEncode(element));
+    });
+    await LocalStorageManager.instance
+        .insertData(PreferencesKeys.basket, specifiedJsonList);
   }
 
   removeFromBasket(SpecifiedMeal value) {
@@ -54,6 +60,16 @@ class BaseBasketViewModel extends BaseViewModel {
       }
     });
     _basketItems.remove(toBeDeleted);
+    notifyListeners();
+  }
+
+  insertCommentToItem(SpecifiedMeal meal, String text) async {
+    getBasketItems.forEach((element) {
+      if (element.idMeal == meal.idMeal) {
+        element.comment = text;
+      }
+    });
+    await addLocalStorage();
     notifyListeners();
   }
 
