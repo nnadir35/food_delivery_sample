@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import '../../constants/app_constants.dart';
+import '../../models/list_item_model.dart';
 import '../../widgets/loading_widget.dart';
 import 'package:stacked/stacked.dart';
 
@@ -33,12 +36,13 @@ class CategoriesView extends StatelessWidget {
                                   .categories[index]
                                   .strCategory);
                             },
-                            image: model.categoryResponse.categories[index]
-                                .strCategoryThumb,
-                            title: model
-                                .categoryResponse.categories[index].strCategory,
-                            description: model.categoryResponse
-                                .categories[index].strCategoryDescription,
+                            model: new ListItemModel(
+                                description: model.categoryResponse
+                                    .categories[index].strCategoryDescription,
+                                thumb: model.categoryResponse.categories[index]
+                                    .strCategoryThumb,
+                                title: model.categoryResponse.categories[index]
+                                    .strCategory),
                           );
                         },
                       )

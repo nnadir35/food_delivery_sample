@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_test/models/list_item_model.dart';
 import 'package:food_delivery_test/models/meal_detail_model.dart';
+import 'package:food_delivery_test/widgets/base_list_item_widget.dart';
 
 class BasketListItem extends StatefulWidget {
   final SpecifiedMeal meal;
@@ -21,18 +23,11 @@ class _BasketListItemState extends State<BasketListItem> {
       onTap: () {
         widget.function();
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListTile(
-          leading: Image.network(
-            widget.meal.strMealThumb,
-            height: MediaQuery.of(context).size.height * 1 / 5,
-            width: MediaQuery.of(context).size.width * 1 / 10,
-          ),
-          title: Text(widget.meal.strMeal),
-          subtitle: Text(widget.meal.comment ?? ""),
-        ),
-      ),
+      child: BaseListItemWidget(
+          model: ListItemModel(
+              description: widget.meal.comment,
+              thumb: widget.meal.strMealThumb,
+              title: widget.meal.strMeal)),
     );
   }
 }

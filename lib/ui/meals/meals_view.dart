@@ -28,7 +28,7 @@ class MealsView extends StatelessWidget {
                     ? ListView.builder(
                         itemCount: model.mealsResponse.meals.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return FavoritedMealListItem(
+                          return MealListItem(
                             meal: model.mealsResponse.meals[index],
                             function: () {
                               model.setSelectedMealName(

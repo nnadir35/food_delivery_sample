@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_test/models/list_item_model.dart';
+import 'package:food_delivery_test/widgets/base_list_item_widget.dart';
 import '../models/meal_detail_model.dart';
 import 'package:provider/provider.dart';
 
@@ -6,11 +8,11 @@ import '../api/viewmodel/base_categories_view_model.dart';
 import 'add_to_favorite_icon_button.dart';
 import 'favorite_toggle.dart';
 
-class FavoritedMealListItem extends StatefulWidget {
+class MealListItem extends StatefulWidget {
   final SpecifiedMeal meal;
   final Function function;
   final Function buttonOnPress;
-  const FavoritedMealListItem({
+  const MealListItem({
     Key key,
     @required this.function,
     @required this.meal,
@@ -18,26 +20,20 @@ class FavoritedMealListItem extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<FavoritedMealListItem> createState() => _FavoritedMealListItemState();
+  State<MealListItem> createState() => _MealListItemState();
 }
 
-class _FavoritedMealListItemState extends State<FavoritedMealListItem> {
+class _MealListItemState extends State<MealListItem> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
-          child: ListTile(
-            onTap: () {
-              widget.function();
-            },
-            leading: Image.network(
-              widget.meal.strMealThumb,
-              height: MediaQuery.of(context).size.height * 1 / 5,
-              width: MediaQuery.of(context).size.width * 1 / 10,
-            ),
-            title: Text(widget.meal.strMeal),
-          ),
+          child: BaseListItemWidget(
+              model: new ListItemModel(
+                  description: "",
+                  thumb: widget.meal.strMealThumb,
+                  title: widget.meal.strMeal)),
         ),
         AddToFavoriteIconButton(
           function: widget.buttonOnPress,

@@ -1,3 +1,5 @@
+import 'package:food_delivery_test/models/list_item_model.dart';
+
 class MealWithDetail {
   List<SpecifiedMeal> meals;
 
@@ -21,7 +23,7 @@ class MealWithDetail {
   }
 }
 
-class SpecifiedMeal {
+class SpecifiedMeal extends ListItemModel {
   String idMeal;
   String strMeal;
   String strCategory;
@@ -39,7 +41,8 @@ class SpecifiedMeal {
       this.strInstructions,
       this.strMealThumb,
       this.strTags,
-      this.comment});
+      this.comment})
+      : super(title: strMeal, description: "", thumb: strMealThumb);
 
   SpecifiedMeal.fromJson(Map<String, dynamic> json) {
     idMeal = json['idMeal'];

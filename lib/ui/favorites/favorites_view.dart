@@ -30,7 +30,7 @@ class FavoritesView extends StatelessWidget {
               : ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return FavoritedMealListItem(
+                    return MealListItem(
                       meal: list[index],
                       function: () {
                         model.setSelectedMealName(list[index].strMeal);

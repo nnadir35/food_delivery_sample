@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_test/models/list_item_model.dart';
+import 'package:food_delivery_test/widgets/base_list_item_widget.dart';
 
 class CategoryListItem extends StatelessWidget {
-  final String image;
-  final String title;
-  final String description;
   final Function function;
+  final ListItemModel model;
   const CategoryListItem({
     Key key,
-    @required this.image,
-    @required this.title,
-    @required this.description,
     this.function,
+    @required this.model,
   }) : super(key: key);
 
   @override
@@ -19,17 +17,8 @@ class CategoryListItem extends StatelessWidget {
       onTap: () {
         function();
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListTile(
-          leading: Image.network(
-            image,
-            height: MediaQuery.of(context).size.height * 1 / 5,
-            width: MediaQuery.of(context).size.width * 1 / 10,
-          ),
-          title: Text(title),
-          subtitle: Text(description, maxLines: 3),
-        ),
+      child: BaseListItemWidget(
+        model: model,
       ),
     );
   }
