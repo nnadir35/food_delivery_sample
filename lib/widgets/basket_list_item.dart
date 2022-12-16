@@ -24,10 +24,14 @@ class _BasketListItemState extends State<BasketListItem> {
         widget.function();
       },
       child: BaseListItemWidget(
-          model: ListItemModel(
-              description: widget.meal.comment,
-              thumb: widget.meal.strMealThumb,
-              title: widget.meal.strMeal)),
+        model: ListItemModel(
+            description: widget.meal.comment,
+            thumb: widget.meal.strMealThumb,
+            title: widget.meal.strMeal),
+        fun: () {
+          widget.function();
+        },
+      ),
     );
   }
 }

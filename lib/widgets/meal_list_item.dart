@@ -30,10 +30,14 @@ class _MealListItemState extends State<MealListItem> {
       children: [
         Expanded(
           child: BaseListItemWidget(
-              model: new ListItemModel(
-                  description: "",
-                  thumb: widget.meal.strMealThumb,
-                  title: widget.meal.strMeal)),
+            model: new ListItemModel(
+                description: "",
+                thumb: widget.meal.strMealThumb,
+                title: widget.meal.strMeal),
+            fun: () {
+              widget.function();
+            },
+          ),
         ),
         AddToFavoriteIconButton(
           function: widget.buttonOnPress,

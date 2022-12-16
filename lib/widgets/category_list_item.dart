@@ -19,6 +19,9 @@ class CategoryListItem extends StatelessWidget {
       },
       child: BaseListItemWidget(
         model: model,
+        fun: () {
+          function();
+        },
       ),
     );
   }
